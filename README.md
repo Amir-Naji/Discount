@@ -3,7 +3,7 @@ It can be run from Class1.cs from IfTest folder.
 
 Origin algorithm
 
-`public class DiscountManager
+```public class DiscountManager
 {
   public decimal Calculate(decimal amount, int type, int years)
   {
@@ -27,4 +27,4 @@ Origin algorithm
     }
     return result;
   }
-}`
+}```
