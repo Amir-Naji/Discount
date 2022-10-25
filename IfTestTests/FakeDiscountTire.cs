@@ -11,18 +11,18 @@ public class FakeDiscountTire : Discounts
 
     public decimal Discount(int years)
     {
-        return PercentCalculator(years);
+        return YearlyBonus(years);
     }
 
     public decimal CommonCalc(decimal amount, decimal tierDiscountValue)
     {
         TierDiscountValue = tierDiscountValue;
-        return CommonCalculation(amount);
+        return TierBasedDiscountCalculation(amount);
     }
 
     public decimal MoreComplicatedCalculation(decimal amount, decimal tierDiscountValue)
     {
         TierDiscountValue = tierDiscountValue;
-        return MoreComplicatedCommonCalculation(amount);
+        return TierBasedAmountCalculation(amount);
     }
 }

@@ -24,7 +24,7 @@ public abstract class Discounts
         return amount - CommonCalculation(amount);
     }
 
-    protected decimal PercentCalculator(int years)
+    protected decimal YearlyBonus(int years)
     {
         years = NegativeToZero(years);
 

@@ -10,6 +10,6 @@ public class DiscountTierThree : Discounts
     public override decimal Calculate(decimal amount, int years)
     {
         amount = NegativeToZero(amount);
-        return CommonCalculation(amount) - PercentCalculator(years) * CommonCalculation(amount);
+        return CommonCalculation(amount) - YearlyBonus(years) * CommonCalculation(amount);
     }
 }
