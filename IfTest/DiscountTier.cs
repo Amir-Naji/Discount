@@ -1,8 +1,8 @@
 ﻿namespace IfTest;
 
-public class DiscountCommonTier : Discounts
+public class DiscountTier : Discounts
 {
-    public DiscountCommonTier(decimal tierDiscountValue)
+    public DiscountTier(decimal tierDiscountValue)
     {
         TierDiscountValue = tierDiscountValue;
     }
