@@ -1,6 +1,6 @@
 ﻿namespace IfTest;
 
-public class DiscountTierOne : Discounts
+public class NonCustomerDiscount : Discounts
 {
     public override decimal Calculate(decimal amount, int years)
     {

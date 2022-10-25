@@ -6,10 +6,10 @@ public class Class1
 {
     private readonly Dictionary<int, Discounts> _discounts = new Dictionary<int, Discounts>
     {
-        { 1, new DiscountTierOne() },
-        { 2, new DiscountCommonTier(0.1m) },
-        { 3, new DiscountCommonTier(0.3m) },
-        { 4, new DiscountCommonTier(0.5m) }
+        { 1, new NonCustomerDiscount() },
+        { 2, new DiscountTier(0.1m) },
+        { 3, new DiscountTier(0.3m) },
+        { 4, new DiscountTier(0.5m) }
     };
 
     public decimal Calculation(decimal amount, int type, int years)

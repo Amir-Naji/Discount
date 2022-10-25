@@ -4,7 +4,7 @@ namespace IfTestTests;
 
 public class DiscountTierFourTests
 {
-    private DiscountCommonTier dtt = new DiscountCommonTier(0.5m);
+    private DiscountTier dtt = new DiscountTier(0.5m);
 
     [Test]
     public void Calculate_ZeroInputWithAnyYear_ZeroReturn()
