@@ -8,57 +8,6 @@ public class DiscountsTests
     private const decimal TierDiscountValue = 0.7m;
 
     [Test]
-    public void PercentCalculator_ZeroYear_ZeroPercent()
-    {
-        Assert.That(fdt.Discount(0), Is.EqualTo(0));
-    }
-
-    [Test]
-    public void PercentCalculator_FourYears_FourPercent()
-    {
-        Assert.That(fdt.Discount(4), Is.EqualTo(0.04m));
-    }
-
-    [Test]
-    public void PercentCalculator_FiveYears_FivePercent()
-    {
-        Assert.That(fdt.Discount(5), Is.EqualTo(0.05m));
-    }
-
-    [Test]
-    public void PercentCalculator_MoreThanFiveYears_FivePercent()
-    {
-        Assert.That(fdt.Discount(6), Is.EqualTo(0.05m));
-        Assert.That(fdt.Discount(100), Is.EqualTo(0.05m));
-    }
-
-    [Test]
-    public void PercentCalculator_NegativeYear_ReturnZero()
-    {
-        Assert.That(fdt.Discount(-3), Is.EqualTo(0));
-    }
-
-    [Test]
-    public void CommonCalculation_ZeroAmount_ReturnZero()
-    {
-        Assert.That(fdt.TierBasedDiscountCalculation(0, TierDiscountValue), Is.EqualTo(0));
-    }
-
-    [Test]
-    public void CommonCalculation_PositiveAmount_ReturnPositive()
-    {
-        Assert.That(fdt.TierBasedDiscountCalculation(1, TierDiscountValue), Is.EqualTo(0.7m));
-        Assert.That(fdt.TierBasedDiscountCalculation(10, TierDiscountValue), Is.EqualTo(7m));
-    }
-    
-    [Test]
-    public void CommonCalculation_NegativeAmount_ReturnNegative()
-    {
-        Assert.That(fdt.TierBasedDiscountCalculation(-1, TierDiscountValue), Is.EqualTo(-0.7m));
-        Assert.That(fdt.TierBasedDiscountCalculation(-10, TierDiscountValue), Is.EqualTo(-7m));
-    }
-
-    [Test]
     public void MoreComplicatedCalculation_ZeroInput_ReturnZero()
     {
         Assert.That(fdt.TierBasedAmountCalculation(0, 0.5m), Is.EqualTo(0));
@@ -76,5 +25,39 @@ public class DiscountsTests
     {
         Assert.That(fdt.TierBasedAmountCalculation(-1, 0.5m), Is.EqualTo(-0.5));
         Assert.That(fdt.TierBasedAmountCalculation(-10, 0.5m), Is.EqualTo(-5));
+    }
+
+    [Test]
+    public void LoyaltyCalculation_ZeroInputPositiveAmount_ReturnZero()
+    {
+        Assert.That(fdt.LoyaltyCalculation(0, 1.0m, 0.5m), Is.EqualTo(0));
+        Assert.That(fdt.LoyaltyCalculation(0, 10m, 0.5m), Is.EqualTo(0));
+    }
+
+    [Test]
+    public void LoyaltyCalculation_LessThan5YearsPositiveAmount_ReturnPositive()
+    {
+        Assert.That(fdt.LoyaltyCalculation(1, 10m, 0.5m), Is.EqualTo(0.05));
+        Assert.That(fdt.LoyaltyCalculation(2, 10m, 0.5m), Is.EqualTo(0.1));
+        Assert.That(fdt.LoyaltyCalculation(3, 10m, 0.5m), Is.EqualTo(0.15));
+        Assert.That(fdt.LoyaltyCalculation(4, 10m, 0.5m), Is.EqualTo(0.2));
+    }
+
+    [Test]
+    public void LoyaltyCalculation_MoreThan5YearsPositiveAmount_ReturnPositiveAllEqual()
+    {
+        Assert.That(fdt.LoyaltyCalculation(5, 10m, 0.5m), Is.EqualTo(0.25));
+        Assert.That(fdt.LoyaltyCalculation(6, 10m, 0.5m), Is.EqualTo(0.25));
+        Assert.That(fdt.LoyaltyCalculation(10, 10m, 0.5m), Is.EqualTo(0.25));
+        Assert.That(fdt.LoyaltyCalculation(20, 10m, 0.5m), Is.EqualTo(0.25));
+    }
+
+    [Test]
+    public void LoyaltyCalculation_NegativeYearsPositiveAmount_ReturnZero()
+    {
+        Assert.That(fdt.LoyaltyCalculation(-5, 10m, 0.5m), Is.EqualTo(0));
+        Assert.That(fdt.LoyaltyCalculation(-6, 10m, 0.5m), Is.EqualTo(0));
+        Assert.That(fdt.LoyaltyCalculation(-10, 10m, 0.5m), Is.EqualTo(0));
+        Assert.That(fdt.LoyaltyCalculation(-20, 10m, 0.5m), Is.EqualTo(0));
     }
 }

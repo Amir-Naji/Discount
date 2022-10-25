@@ -1,4 +1,5 @@
 ﻿using IfTest;
+using NUnit.Framework.Constraints;
 
 namespace IfTestTests;
 
@@ -9,20 +10,15 @@ public class FakeDiscountTire : Discounts
         throw new NotImplementedException();
     }
 
-    public decimal Discount(int years)
-    {
-        return YearlyBonus(years);
-    }
-
-    public decimal TierBasedDiscountCalculation(decimal amount, decimal tierDiscountValue)
-    {
-        TierDiscountValue = tierDiscountValue;
-        return TierBasedDiscountCalculation(amount);
-    }
-
     public decimal TierBasedAmountCalculation(decimal amount, decimal tierDiscountValue)
     {
         TierDiscountValue = tierDiscountValue;
-        return TierBasedAmountCalculation(amount);
+        return DiscountAmountCalculation(amount);
+    }
+
+    public decimal LoyaltyCalculation(int years, decimal amount, decimal tierDiscountValue)
+    {
+        TierDiscountValue = tierDiscountValue;
+        return LoyaltyCalculation(years, amount);
     }
 }

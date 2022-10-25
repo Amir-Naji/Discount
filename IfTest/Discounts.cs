@@ -14,17 +14,22 @@ public abstract class Discounts
         return (amount < 0) ? 0 : amount;
     }
 
-    protected decimal TierBasedDiscountCalculation(decimal amount)
+    protected decimal LoyaltyCalculation(int year, decimal amount)
     {
-        return TierDiscountValue * amount;
+        return YearlyBonus(year) * DiscountAmountCalculation(amount);
     }
 
-    protected decimal TierBasedAmountCalculation(decimal amount)
+    protected decimal DiscountAmountCalculation(decimal amount)
     {
         return amount - TierBasedDiscountCalculation(amount);
     }
 
-    protected decimal YearlyBonus(int years)
+    private decimal TierBasedDiscountCalculation(decimal amount)
+    {
+        return TierDiscountValue * amount;
+    }
+
+    private static decimal YearlyBonus(int years)
     {
         years = NegativeToZero(years);
 

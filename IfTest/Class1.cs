@@ -8,7 +8,7 @@ public class Class1
     {
         { 1, new DiscountTierOne() },
         { 2, new DiscountCommonTier(0.1m) },
-        { 3, new DiscountTierThree(0.7m) },
+        { 3, new DiscountCommonTier(0.3m) },
         { 4, new DiscountCommonTier(0.5m) }
     };
 
