@@ -1,45 +1,47 @@
-﻿namespace IfTest;
+﻿using System.Runtime.CompilerServices;
 
-public abstract class Discounts
+[assembly: InternalsVisibleTo("DiscountTierTwoTests")]
+namespace IfTest;
+
+public class Discounts : IDiscounts
 {
-    protected const int MaxYearDiscountToCalculate = 5;
-    protected const int Percent = 100;
+    private const int MaxYearDiscountToCalculate = 5;
+    private const int Percent = 100;
 
-    protected decimal TierDiscountValue;
+    private readonly decimal _tierDiscountValue;
 
-    public abstract decimal Calculate(decimal amount, int years);
-
-    protected decimal NegativeToZero(decimal amount)
+    public Discounts(decimal tierDiscountValue)
     {
-        return (amount < 0) ? 0 : amount;
+        _tierDiscountValue = tierDiscountValue;
     }
 
-    protected decimal LoyaltyCalculation(int year, decimal amount)
+    public decimal Calculate(decimal amount, int years)
+    {
+        amount = amount.NegativeToZero();
+        return DiscountAmountCalculation(amount) - LoyaltyCalculation(years, amount);
+    }
+
+    private decimal LoyaltyCalculation(int year, decimal amount)
     {
         return YearlyBonus(year) * DiscountAmountCalculation(amount);
     }
 
-    protected decimal DiscountAmountCalculation(decimal amount)
+    private decimal DiscountAmountCalculation(decimal amount)
     {
         return amount - TierBasedDiscountCalculation(amount);
     }
 
-    private decimal TierBasedDiscountCalculation(decimal amount)
-    {
-        return TierDiscountValue * amount;
-    }
-
     private static decimal YearlyBonus(int years)
     {
-        years = NegativeToZero(years);
+        years = years.NegativeToZero();
 
-        return years > MaxYearDiscountToCalculate 
-            ? (decimal)MaxYearDiscountToCalculate / Percent 
+        return years > MaxYearDiscountToCalculate
+            ? (decimal)MaxYearDiscountToCalculate / Percent
             : (decimal)years / Percent;
     }
 
-    private static int NegativeToZero(int input)
+    private decimal TierBasedDiscountCalculation(decimal amount)
     {
-        return (input < 0) ? 0 : input;
+        return _tierDiscountValue * amount;
     }
 }

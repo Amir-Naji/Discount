@@ -2,9 +2,9 @@
 
 namespace IfTestTests;
 
-public class DiscountTierOneTests
+public class NonCustomerDiscountTests
 {
-    private DiscountTierOne dto = new DiscountTierOne();
+    private NonCustomerDiscount dto = new NonCustomerDiscount();
 
     [Test]
     public void Calculate_ZeroInputWithAnyYear_ZeroReturn()

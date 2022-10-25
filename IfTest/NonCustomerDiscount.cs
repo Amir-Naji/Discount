@@ -1,9 +1,10 @@
 ﻿namespace IfTest;
 
-public class NonCustomerDiscount : Discounts
+public class NonCustomerDiscount : IDiscounts
 {
-    public override decimal Calculate(decimal amount, int years)
+    public decimal Calculate(decimal amount, int years)
     {
-        return NegativeToZero(amount);
+        //return NegativeToZero(amount);
+        return 0;
     }
 }
