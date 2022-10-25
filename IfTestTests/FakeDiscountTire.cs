@@ -14,13 +14,13 @@ public class FakeDiscountTire : Discounts
         return YearlyBonus(years);
     }
 
-    public decimal CommonCalc(decimal amount, decimal tierDiscountValue)
+    public decimal TierBasedDiscountCalculation(decimal amount, decimal tierDiscountValue)
     {
         TierDiscountValue = tierDiscountValue;
         return TierBasedDiscountCalculation(amount);
     }
 
-    public decimal MoreComplicatedCalculation(decimal amount, decimal tierDiscountValue)
+    public decimal TierBasedAmountCalculation(decimal amount, decimal tierDiscountValue)
     {
         TierDiscountValue = tierDiscountValue;
         return TierBasedAmountCalculation(amount);

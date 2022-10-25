@@ -14,14 +14,14 @@ public abstract class Discounts
         return (amount < 0) ? 0 : amount;
     }
 
-    protected decimal CommonCalculation(decimal amount)
+    protected decimal TierBasedDiscountCalculation(decimal amount)
     {
         return TierDiscountValue * amount;
     }
 
-    protected decimal MoreComplicatedCommonCalculation(decimal amount)
+    protected decimal TierBasedAmountCalculation(decimal amount)
     {
-        return amount - CommonCalculation(amount);
+        return amount - TierBasedDiscountCalculation(amount);
     }
 
     protected decimal YearlyBonus(int years)

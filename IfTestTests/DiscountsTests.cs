@@ -41,40 +41,40 @@ public class DiscountsTests
     [Test]
     public void CommonCalculation_ZeroAmount_ReturnZero()
     {
-        Assert.That(fdt.CommonCalc(0, TierDiscountValue), Is.EqualTo(0));
+        Assert.That(fdt.TierBasedDiscountCalculation(0, TierDiscountValue), Is.EqualTo(0));
     }
 
     [Test]
     public void CommonCalculation_PositiveAmount_ReturnPositive()
     {
-        Assert.That(fdt.CommonCalc(1, TierDiscountValue), Is.EqualTo(0.7m));
-        Assert.That(fdt.CommonCalc(10, TierDiscountValue), Is.EqualTo(7m));
+        Assert.That(fdt.TierBasedDiscountCalculation(1, TierDiscountValue), Is.EqualTo(0.7m));
+        Assert.That(fdt.TierBasedDiscountCalculation(10, TierDiscountValue), Is.EqualTo(7m));
     }
     
     [Test]
     public void CommonCalculation_NegativeAmount_ReturnNegative()
     {
-        Assert.That(fdt.CommonCalc(-1, TierDiscountValue), Is.EqualTo(-0.7m));
-        Assert.That(fdt.CommonCalc(-10, TierDiscountValue), Is.EqualTo(-7m));
+        Assert.That(fdt.TierBasedDiscountCalculation(-1, TierDiscountValue), Is.EqualTo(-0.7m));
+        Assert.That(fdt.TierBasedDiscountCalculation(-10, TierDiscountValue), Is.EqualTo(-7m));
     }
 
     [Test]
     public void MoreComplicatedCalculation_ZeroInput_ReturnZero()
     {
-        Assert.That(fdt.MoreComplicatedCalculation(0, 0.5m), Is.EqualTo(0));
+        Assert.That(fdt.TierBasedAmountCalculation(0, 0.5m), Is.EqualTo(0));
     }
 
     [Test]
     public void MoreComplicatedCalculation_PositiveInput_ReturnPositive()
     {
-        Assert.That(fdt.MoreComplicatedCalculation(1, 0.5m), Is.EqualTo(0.5));
-        Assert.That(fdt.MoreComplicatedCalculation(10, 0.5m), Is.EqualTo(5));
+        Assert.That(fdt.TierBasedAmountCalculation(1, 0.5m), Is.EqualTo(0.5));
+        Assert.That(fdt.TierBasedAmountCalculation(10, 0.5m), Is.EqualTo(5));
     }
 
     [Test]
     public void MoreComplicatedCalculation_NegativeInput_ReturnNegative()
     {
-        Assert.That(fdt.MoreComplicatedCalculation(-1, 0.5m), Is.EqualTo(-0.5));
-        Assert.That(fdt.MoreComplicatedCalculation(-10, 0.5m), Is.EqualTo(-5));
+        Assert.That(fdt.TierBasedAmountCalculation(-1, 0.5m), Is.EqualTo(-0.5));
+        Assert.That(fdt.TierBasedAmountCalculation(-10, 0.5m), Is.EqualTo(-5));
     }
 }
